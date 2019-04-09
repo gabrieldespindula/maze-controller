@@ -6,7 +6,7 @@ var contextClass = (window.AudioContext ||
 
       if (contextClass) {
         // Web Audio API is available.
-        var context = new contextClass();
+        var context = new AudioContext();
       }
       var gainNode = context.createGain();
       var oscillator1 = context.createOscillator();
