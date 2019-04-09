@@ -1,0 +1,219 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>WorldSkills #16</title>
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="WorldSkills #16" />
+		<meta property="og:description" content="WorldSkills 2017 #16 Electronics, Hardware Design project. Use with your phone!" />
+		<meta property="og:image" content="https://www.worldskills.org/packages/worldskills_org/themes/worldskills/images/worldskills.png" />
+		<meta property="og:image:width" content="500" />
+		<meta property="og:image:height" content="500" />
+		<meta property="og:site_name" content="WorldSkills #16" />
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+        <!-- Place favicon.ico in the root directory -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="./css/normalize.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="./js/binaural.js"></script>
+        <script async src="./scripts/guitartuner-core.js"></script>
+    </head>
+
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">WorldSkills Abu Dhabi 2017</a>
+        </div>
+        <ul class="nav navbar-nav pull-right">
+          <button href="/opt" id="options_btn" type="button" onclick="show_options()" class="btn btn-basic btn-block" style="display:none">Options</button>
+        </ul>
+      </div>
+    </nav>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <main class="main">
+          <audio-processor></audio-processor>
+          <audio-visualizer></audio-visualizer>
+          <tuning-instructions></tuning-instructions>
+        </main>
+
+        <aside class="toast-view"></aside>
+
+        <script async src="./scripts/guitartuner-core.js"></script>
+
+        <div class="container">
+            <div class="row">
+                <div id="options_view" class="col-md-12" style="display:none">
+                    <br>
+                    <h3>Advanced configurations</h3><br>
+                    <form class="form-inline">
+                      <div class="form-group">
+                        <label for="max_freq"> Maximum Frequency:</label>
+                        <input id="max_v_form" type="number" class="form-control" id="max_freq" min='300' max='2200' value="830">
+                      </div>
+                      <div class="form-group">
+                        <label for="min_freq"> Minimum Frequency:</label>
+                        <input id="min_v_form" type="number" class="form-control" id="min_freq" min='300' max="2200" value="700">
+                      </div>
+                      <br>
+                      <div class="checkbox">
+                        <label id="acc_checkbox" style="display:none;"><input id="e_acc" type="checkbox" checked>Use accelerometer</label>
+                        <br>
+                        <label><input id="e_count" type="checkbox">Enable input</label>
+                      </div>
+                      <br>
+                      <br>
+                      <button type="button" onclick="apply_config()" class="btn btn-default">Apply</button>
+                      <button type="button" onclick="show_options()" class="btn btn-default">Return</button>
+                    </form>
+                    <br>
+                </div>
+                <div id="main_page">
+                    <div class="col-md-12">
+                        <br>
+                        Frequency 1 = <span id="range1_view">880</span>Hz.
+                        <input id="range1" type="range" min="440" max="2200" value="880" step="1" onchange="start(this.value, range2.value)"/>
+                        <br>
+                        Frequency 2 = <span id="range2_view">880</span>Hz.
+                        <input id="range2" type="range" min="440" max="2200" value="880" step="1" onchange="start(range1.value, this.value)"/>
+                        <br>
+                    </div>
+                    <div id="counter_view" class="col-md-12" style="display:none;">
+                        <br>
+                        Microphone fundamental freq = <span id="mic_in">880</span>Hz.
+                        <br>
+                        Input signal = <span id="mic_freq">880</span>
+                        <br>
+                        Counter = <span id="time">0.0</span>s.
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <br>
+                        <button id="start_btn" type="button" onclick="startstop()" class="btn btn-success btn-block" style="display:block">Start</button>
+                        <button id="stop_btn" type="button" onclick="startstop()" class="btn btn-danger btn-block" style="display:none">Stop</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div style="text-align: right;position: fixed;z-index:9999999;bottom: 0;width: auto;right: 1%;cursor: pointer;line-height: 0;display:block !important;"><a title="Hosted on free web hosting 000webhost.com. Host your own website for FREE." target="_blank" href="https://www.000webhost.com/?utm_source=000webhostapp&utm_campaign=000_logo&utm_medium=website&utm_content=footer_img"><img src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png" alt="www.000webhost.com"></a></div><script>function getCookie(e){for(var t=e+"=",n=decodeURIComponent(document.cookie).split(";"),o=0;o<n.length;o++){for(var i=n[o];" "==i.charAt(0);)i=i.substring(1);if(0==i.indexOf(t))return i.substring(t.length,i.length)}return""}getCookie("hostinger")&&(document.cookie="hostinger=;expires=Thu, 01 Jan 1970 00:00:01 GMT;",location.reload());var notification=document.getElementsByClassName("notice notice-success is-dismissible"),hostingerLogo=document.getElementsByClassName("hlogo"),mainContent=document.getElementsByClassName("notice_content")[0],newList=["Powerful and Easy-To-Use Control Panel.","1-Click Auto Installer and 24/7 Live Support.","Free Domain, Email and SSL Bundle.","5x faster WordPress performance","Weekly Backups and Fast Response Time."];if(0<notification.length&&null!=mainContent){var googleFont=document.createElement("link");googleFontHref=document.createAttribute("href"),googleFontRel=document.createAttribute("rel"),googleFontHref.value="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600",googleFontRel.value="stylesheet",googleFont.setAttributeNode(googleFontHref),googleFont.setAttributeNode(googleFontRel);var css="@media only screen and (max-width: 768px) {.web-hosting-90-off-image-wrapper {position: absolute;} .notice_content {justify-content: center;} .web-hosting-90-off-image {opacity: 0.3;}} @media only screen and (min-width: 769px) {.notice_content {justify-content: space-between;} .web-hosting-90-off-image-wrapper {padding: 0 5%}} .content-wrapper {z-index: 5} .notice_content {display: flex; align-items: center;} * {-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;} .upgrade_button_red_sale{border: 0; border-radius: 3px; background-color: #ff123a !important; padding: 15px 55px !important; margin-left: 30px; font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 600; color: #ffffff;} .upgrade_button_red_sale:hover{color: #ffffff !important; background: #d10303 !important;}",style=document.createElement("style"),sheet=window.document.styleSheets[0];style.styleSheet?style.styleSheet.cssText=css:style.appendChild(document.createTextNode(css)),document.getElementsByTagName("head")[0].appendChild(style),document.getElementsByTagName("head")[0].appendChild(googleFont);var button=document.getElementsByClassName("upgrade_button_red")[0],link=button.parentElement;link.setAttribute("href","https://www.hostinger.com/hosting-starter-offer?utm_source=000webhost&utm_medium=panel&utm_campaign=000-wp"),link.innerHTML='<button class="upgrade_button_red_sale">TRANSFER NOW</button>',(notification=notification[0]).setAttribute("style","padding-bottom: 10px; padding-top: 5px; background-image: url(https://cdn.000webhost.com/000webhost/promotions/springsale/mountains-neon-background.jpg); background-color: #000000; background-size: cover; background-repeat: no-repeat; color: #ffffff; border-color: #ff123a; border-width: 8px;"),notification.className="notice notice-error is-dismissible",(hostingerLogo=hostingerLogo[0]).setAttribute("src","https://cdn.000webhost.com/000webhost/promotions/springsale/logo-hostinger-white.svg"),hostingerLogo.setAttribute("style","float: none !important; height: auto; max-width: 100%; margin: 40px 20px 10px 30px;");var h1Tag=notification.getElementsByTagName("H1")[0];h1Tag.remove();var paragraph=notification.getElementsByTagName("p")[0];paragraph.innerHTML="Migrate your WordPress to Hostinger and enjoy the best features on the market! The time is now!",paragraph.setAttribute("style",'max-width: 600px; margin-left: 30px; font-family: "Open Sans", sans-serif; font-size: 16px; font-weight: 600;');var list=notification.getElementsByTagName("UL")[0];list.setAttribute("style","max-width: 675px;");for(var listElements=list.getElementsByTagName("LI"),i=0;i<newList.length;i++)listElements[i].setAttribute("style","color:#ffffff; list-style-type: disc; margin-left: 30px; font-family: 'Open Sans', sans-serif; font-size: 14px; font-weight: 300; line-height: 1.5;"),listElements[i].innerHTML=newList[i];listElements[listElements.length-1].remove();var org_html=mainContent.innerHTML,new_html='<div class="content-wrapper">'+mainContent.innerHTML+'</div><div class="web-hosting-90-off-image-wrapper"><img class="web-hosting-90-off-image" src="https://cdn.000webhost.com/000webhost/promotions/springsale/web-hosting-90-off.png"></div>';mainContent.innerHTML=new_html;var saleImage=mainContent.getElementsByClassName("web-hosting-90-off-image")[0];!function(){var t=document.querySelectorAll("body.wp-admin")[0];function e(){var e=document.createElement("iframe");e.id="hgr-promo-widget",e.setAttribute("src","https://www.hostinger.com/widgets/bottom-banner-sale/000_wp_admin"),e.setAttribute("allowfullscreen",!0),e.setAttribute("frameborder",0),e.style.cssText="z-index: 2147483000 !important;position: fixed !important;bottom: 0; width: 100%;!important; left: 0!important;",e.style.opacity=0,e.onload=function(){iFrameResize({},"#hgr-promo-widget"),e.style.opacity=1},t.insertAdjacentElement("afterend",e)}if(window.iFrameResize)e();else{var n=document.createElement("script");n.type="text/javascript",t.insertAdjacentElement("afterend",n),n.onload=e,n.src="https://unpkg.com/iframe-resizer@3.6.3/js/iframeResizer.min.js"}}()}</script></body>
+</html>
+
+<script>
+    var options_flag=true;
+    var counter_flag=false;
+
+    function show_options(){
+        if(!options_flag){
+            $(this).addClass('active');
+            if(document.getElementById("start_btn").style.display === "none"){startstop();}
+            document.getElementById("options_view").style.display="block";
+            document.getElementById("main_page").style.display="none";
+            options_flag=1;
+        }
+        else{
+            $(this).removeClass('active');
+            document.getElementById("options_view").style.display="none";
+            document.getElementById("main_page").style.display="block";
+            options_flag=0;
+        }
+    }
+    function update_views(){
+        var frequencia = document.querySelector("tuning-instructions").frequencyToRender;
+        document.getElementById("range1_view").innerHTML=document.getElementById("range1").value;
+        document.getElementById("range2_view").innerHTML=document.getElementById("range2").value;
+        document.getElementById("mic_in").innerHTML=frequencia.toFixed(1);
+        if(frequencia>439 && frequencia<441){
+            document.getElementById("mic_freq").innerHTML="OFF";
+            counter_flag=false;
+        }
+        else{
+            document.getElementById("mic_freq").innerHTML="ON";
+            if(!counter_flag){
+                timer=0;
+            }
+            counter_flag=true;
+        }
+    }
+    function apply_config(){
+        var max_value = parseInt(document.getElementById("max_v_form").value);
+        var min_value = parseInt(document.getElementById("min_v_form").value);
+        var curr_value = min_value+((max_value-min_value)/2);
+        console.log(curr_value);
+        $('#range1').prop({
+            'min': min_value,
+            'max': max_value
+        });
+        $('#range2').prop({
+            'min': min_value,
+            'max': max_value
+        });
+        set_range(curr_value, curr_value);
+        if(document.getElementById("e_count").checked){document.getElementById("counter_view").style.display = "block";}
+        else{document.getElementById("counter_view").style.display = "none";}
+        update_views();
+        show_options();
+    }
+
+    function set_range(ch1, ch2){
+        document.getElementById("range1").value = ch1;
+        document.getElementById("range2").value = ch2;
+    }
+
+    window.ondevicemotion = function(event) {
+        if(event.accelerationIncludingGravity.x||event.accelerationIncludingGravity.y||event.accelerationIncludingGravity.z){
+        document.getElementById("acc_checkbox").style.display = "block";
+        }
+        if(document.getElementById("e_acc").checked) {
+            var x = Math.floor((event.accelerationIncludingGravity.x + 10)/2);
+            var y = Math.floor((event.accelerationIncludingGravity.y + 10)/2);
+
+            var curr_x = ((parseInt(document.getElementById("range1").max) - parseInt(document.getElementById("range1").min)) / 10) * x;
+            curr_x = curr_x + parseInt(document.getElementById("range1").min);
+            var curr_y = ((parseInt(document.getElementById("range2").max) - parseInt(document.getElementById("range2").min)) / 10) * y;
+            curr_y = curr_y + parseInt(document.getElementById("range2").min);
+            if ((curr_x != parseInt(document.getElementById("range1").value)) || (curr_y != parseInt(document.getElementById("range2").value))) {
+                set_range(curr_x, curr_y);
+                start(curr_x, curr_y);
+            }
+        }
+    }
+    function startstop() {
+        //if (typeof oscillator1 != 'undefined') oscillator1.disconnect();
+        //if (typeof oscillator2 != 'undefined') oscillator2.disconnect();
+        if(document.getElementById("start_btn").style.display === "block"){
+            document.getElementById("start_btn").style.display = "none";
+            document.getElementById("stop_btn").style.display = "block";
+        }
+        else{
+            document.getElementById("stop_btn").style.display = "none";
+            document.getElementById("start_btn").style.display = "block";
+        }
+        start(document.getElementById("range1").value, document.getElementById("range2").value);
+    }
+    window.onload = function() {
+        apply_config();
+    };
+    var timer=0;
+    window.setInterval(function(){
+        if(document.getElementById("mic_freq").innerHTML==="ON"){
+            timer=timer+0.2;
+        }
+        document.getElementById("time").innerHTML=timer.toFixed(1);
+        update_views();
+
+    }, 200);
+
+</script>
